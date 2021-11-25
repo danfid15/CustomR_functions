@@ -1,2 +1,2 @@
-# R_functions
+# CustomR_functions
 List of R functions I commonly use for research purposes
