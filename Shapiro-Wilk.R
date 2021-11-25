@@ -60,3 +60,6 @@ shap.wilk <-function(data){
   
   return(results)
 }
+
+## Example
+# shap.wilk(iris)
