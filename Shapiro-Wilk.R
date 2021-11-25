@@ -61,5 +61,8 @@ shap.wilk <-function(data){
   return(results)
 }
 
-## Example
+## Example 1 
 # shap.wilk(iris)
+
+## Example 2
+# shap.wilk(cars)
