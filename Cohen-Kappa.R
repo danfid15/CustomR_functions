@@ -132,10 +132,10 @@ kappa2.table <- function(rater1,rater2){
 }
 
 ## Example 1
-Matrix1 <- data.frame(matrix(runif(200,0,1), ncol = 20))
-Matrix1 <- round(Matrix1, digits = 0)
- 
-Matrix2 <- data.frame(matrix(runif(200,0,1), ncol = 20))
-Matrix2 <- round(Matrix2, digits = 0)
 
-kappa2.table(Matrix1,Matrix2)
+# Matrix1 <- data.frame(matrix(runif(200,0,1), ncol = 20))
+# Matrix1 <- round(Matrix1, digits = 0)
+# Matrix2 <- data.frame(matrix(runif(200,0,1), ncol = 20))
+# Matrix2 <- round(Matrix2, digits = 0)
+# 
+# kappa2.table(Matrix1,Matrix2)
