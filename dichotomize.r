@@ -42,8 +42,8 @@ dichotomize <- function(trait,breaking.point,greater.or.equal=TRUE){
   return(results)
 }
 
-#example 1 - dichomotize car speed above or equal to 13.
-dichotomize(cars$speed,13)
-
-#example 2 - dichomotize car speed below or equal to 13.
-dichotomize(cars$speed,13, greater.or.equal = FALSE)
+# #example 1 - dichomotize car speed above or equal to 13.
+# dichotomize(cars$speed,13)
+# 
+# #example 2 - dichomotize car speed below or equal to 13.
+# dichotomize(cars$speed,13, greater.or.equal = FALSE)
