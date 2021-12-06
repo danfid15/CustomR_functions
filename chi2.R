@@ -1,11 +1,7 @@
-#Chi-square function that ruans chi-square test for every column except for the first.
-# This function also produces a barplot for each variable
-# The first column must contain only two categorical variables.
+#Chi-square function 
+#Tables raw data between two categorical variables (these must be in the first column).
 
 chi2 <- function(data){
-  
-  #Required packages
-  require(ggplot2)
   
   #Getting the data from the dataset
   data<- data.frame(data)
@@ -22,8 +18,8 @@ chi2 <- function(data){
   }
   
   #Results table
-  results<- data.frame(matrix(NA,nrow = nvars-1,ncol = 4))
-  colnames(results)<- c("Variable","x2","degree of freedom","p.value")
+  results<- data.frame(matrix(NA,nrow = nvars-1,ncol = 5))
+  colnames(results)<- c("Variable","N","x2","degree of freedom","p.value")
   results[,1]<- colnames(data[2:nvars])
   
   
@@ -32,26 +28,12 @@ chi2 <- function(data){
   
   for (a in 1:(nvars-1)) {
     test <- chisq.test(table(data[,1],data[,a+1])) 
-    results[a,2] <- round(test$statistic,digits = 3)
-    results[a,3] <- test$parameter
-    results[a,4] <- round(test$p.value,digits = 2)
+    results[a,2] <- sum(table(data[,1],data[,a+1]))
+    results[a,3] <- round(test$statistic,digits = 3)
+    results[a,4] <- test$parameter
+    results[a,5] <- round(test$p.value,digits = 2)
     
   }
-  
-  #Create a barplot
-  
-  for (a in 1:(nvars-1)) {
-    print(
-      ggplot(data = data, aes(x= data[,a+1], fill=data[,1]))+
-        labs(title = paste("Barplot of",colnames(data[a+1])), x = "",subtitle = paste("Chi-square test of independence x2=",results[a,2], "p.value=",results[a,4]))+
-        geom_bar(position=position_dodge(),colour="black")+
-        geom_text(stat="count",aes(label=..count..),position = position_dodge(0.9),vjust = -0.5)+
-        scale_fill_brewer(palette="Dark2")+
-        theme_classic()+
-        theme(legend.title = element_blank())
-    )
-  }
-  
   
   #Returning values
   return(results)
