@@ -1,5 +1,14 @@
+# This function calculates Euclidean distances, and plots them in 3 different ways: 
+## 1)heatmap 
+## 2)MDS scatterplot 
+## 3)Ward clustering
 
-eu_mds<- function(data,color=TRUE,shape=TRUE,ward_k=3){
+# The first column must be the name of the elements we are analyzing
+# If TRUE, color of the MDS scatterplot is based on the second column
+# If TRUE, shape of the MDS scatterplot is based on the third column
+# ward_k is sets the number of color clusters in Wards cluster plot.
+
+euclidist_plots<- function(data,color=TRUE,shape=TRUE,ward_k=3){
   
   require(MASS)
   require(ggplot2)
@@ -16,7 +25,7 @@ eu_mds<- function(data,color=TRUE,shape=TRUE,ward_k=3){
     color<- as.factor(data[,2])
     start<- start+1
   }else{
-    color<- "grey50"
+    color<- NULL
   }
   
   # Use the third column to change the shape of the data points
@@ -24,7 +33,7 @@ eu_mds<- function(data,color=TRUE,shape=TRUE,ward_k=3){
     shape<- as.factor(data[,3])
     start<- start+1
   }else{
-    shape<- 16
+    shape<- NULL
   }
   
   #1. Euclidean distance matrix
@@ -62,9 +71,9 @@ eu_mds<- function(data,color=TRUE,shape=TRUE,ward_k=3){
   MDSPoints2 <- MDS$points[,2]
   
   p2<- ggplot(MDS, aes(x = MDSPoints1, y = MDSPoints2, 
-                       label = attributes, color = color,shape = shape),size=5)+
-    geom_point()+
-    geom_text(aes(label= attributes),vjust=-0.8,size=5)+
+                       color = color,shape = shape))+
+    geom_point(aes(size=5))+
+    geom_text(aes(label= attributes),vjust=-0.8,size=5,show.legend = FALSE)+
     theme_classic()+ 
     theme(legend.position = "bottom", legend.box = "vertical",
           legend.title = element_blank(),
