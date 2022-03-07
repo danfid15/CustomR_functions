@@ -11,7 +11,7 @@ summary_delta <- data%>%
   mutate(delta_r_var = delta_r/delta_error^2,
          delta_error_var = 1/delta_error^2) %>%
   summarise(weighted_mean = round(sum(delta_r_var)/sum(delta_error_var),0),
-            uncertainty = 1/sum(delta_error_var))
+            uncertainty = round(1/sum(delta_error_var),0))
 
 return(summary_delta)
 
