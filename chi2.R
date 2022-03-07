@@ -1,5 +1,5 @@
 #Chi-square function 
-#Tables raw data between two categorical variables (these must be in the first column).
+#Tables raw binary data between two categorical variables (these must be in the first column).
 
 chi2 <- function(data){
   
